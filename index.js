@@ -1,6 +1,8 @@
 const express = require("express");
 const app = express();
 const authRoutes = require("./routes/routes");
+const passportSetup = require('./config/passport');
+
 const PORT = 3000;
 
 // Set Up View
