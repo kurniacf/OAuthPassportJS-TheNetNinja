@@ -3,6 +3,16 @@ const GoogleStrategy = require('passport-google-oauth20');
 const key = require('./keys');
 const User = require('../models/userSchema');
 
+passport.serializeUser((user, done)=>{
+    done(null, user.id);
+});
+
+passport.deserializeUser((id, done)=>{
+    User.findById(id).then((user)=>{
+        done(null, user.id);
+    });
+});
+
 passport.use(new GoogleStrategy(
     {
         // Setup Google Strategy
@@ -18,6 +28,7 @@ passport.use(new GoogleStrategy(
             if(currentUser){
                 // Already Account User
                 console.log('User is: ' + currentUser);
+                done(null, currentUser);
             } else {
                 // If Not Already (Create User)
                 new User({
@@ -25,6 +36,7 @@ passport.use(new GoogleStrategy(
                     googleId: profile.id
                 }).save().then((newUser) => {
                     console.log('New User Created: '+ newUser);
+                    done(null, newUser);
                 });
             }
         });
