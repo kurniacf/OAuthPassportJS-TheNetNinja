@@ -1,43 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>OAuth Tutorial</title>
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
         }
-    
+
         nav {
             background: #4a7eff;
             padding: 20px 10px;
         }
-    
+
         nav ul {
             max-width: 960px;
             margin: 0 auto;
             padding: 0;
         }
-    
+
         nav li {
             list-style-type: none;
             display: inline-block;
             margin: 0 10px 0 0;
         }
-    
+
         nav a {
             color: rgb(16, 16, 16);
-            font-size: 18px;
             font-weight: 800;
+            font-size: 18px;
             background: rgba(255, 255, 255, 0.2);
             text-decoration: none;
             padding: 10px;
             display: block;
         }
-    
+
         main,
         header {
             max-width: 960px;
@@ -45,16 +46,9 @@
             padding: 0 10px;
             color: #333;
         }
-    
-        .google-btn {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 10px;
-            background: #f74343;
-        }
     </style>
 </head>
+
 <body>
     <nav>
         <ul>
@@ -67,10 +61,13 @@
         </ul>
     </nav>
     <header>
-        <h1>Login : </h1>
+        <h1>Welcome to Profile Page, <%= user.username %>
+        </h1>
     </header>
     <main>
-        <a class="google-btn" href="/auth/google">Google+</a>
+        <img src="<%= user.thumbnail %>" />
+        <p>This is your profile thumbnail</p>
     </main>
 </body>
+
 </html>

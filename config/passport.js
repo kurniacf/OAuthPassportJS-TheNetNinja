@@ -16,10 +16,11 @@ passport.deserializeUser((id, done)=>{
 passport.use(new GoogleStrategy(
     {
         // Setup Google Strategy
-        callbackURL: '/auth/google/redirect',
         clientID: key.google.clientID,
-        clientSecret: key.google.clientSecret
+        clientSecret: key.google.clientSecret,
+        callbackURL: '/auth/google/redirect'
     }, (accessToken, refreshToken, profile, done)=>{
+        console.log(profile);
         // Passport Callback
         // Check if User Already Account in DB
         User.findOne({
@@ -33,7 +34,8 @@ passport.use(new GoogleStrategy(
                 // If Not Already (Create User)
                 new User({
                     username: profile.displayName,
-                    googleId: profile.id
+                    googleId: profile.id,
+                    thumbnail: profile._json.image
                 }).save().then((newUser) => {
                     console.log('New User Created: '+ newUser);
                     done(null, newUser);
